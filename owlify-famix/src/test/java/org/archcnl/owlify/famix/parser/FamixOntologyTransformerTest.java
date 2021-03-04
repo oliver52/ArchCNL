@@ -17,6 +17,7 @@ import org.archcnl.owlify.famix.ontology.FamixOntClassesAndProperties;
 import org.archcnl.owlify.famix.parser.FamixOntologyTransformer;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Ignore;
 
 public class FamixOntologyTransformerTest {
 
@@ -24,6 +25,7 @@ public class FamixOntologyTransformerTest {
 	public void setUp() throws Exception {
 	}
 
+    @Ignore
 	@Test
 	public void testCoarse() throws IOException {
 		FamixOntologyTransformer famixTransformer = new FamixOntologyTransformer("./src/test/resources/results.owl");

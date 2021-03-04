@@ -92,5 +92,18 @@
 			<version>${junitVersion}</version>
 			<scope>test</scope>
 		</dependency>
+        <!-- https://mvnrepository.com/artifact/org.eclipse.xpand/org.eclipse.xtend -->
+        <dependency>
+            <groupId>org.eclipse.xpand</groupId>
+            <artifactId>org.eclipse.xtend</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.eclipse.xtext/org.eclipse.xtext -->
+        <dependency>
+            <groupId>org.eclipse.xtext</groupId>
+            <artifactId>org.eclipse.xtext</artifactId>
+            <version>2.25.0</version>
+        </dependency>
+
     </dependencies>
 </project>
