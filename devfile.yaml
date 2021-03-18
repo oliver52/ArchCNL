@@ -1,0 +1,55 @@
+apiVersion: 1.0.0
+metadata:
+  name: ArchCNL
+projects:
+  - name: ArchCNL
+    source:
+      location: 'https://github.com/oliver52/ArchCNL.git'
+      type: git
+      branch: feature/container-dev
+components:
+  - id: redhat/java/latest
+    preferences:
+      java.server.launchMode: Standard
+    type: chePlugin
+  - mountSources: true
+    endpoints:
+      - attributes:
+          public: 'false'
+        name: debug
+        port: 5005
+    memoryLimit: 2048Mi
+    type: dockerimage
+    volumes:
+      - name: m2
+        containerPath: /home/user/.m2
+    image: 'quay.io/eclipse/che-java11-maven:nightly'
+    alias: maven
+    env:
+      - value: ''
+        name: MAVEN_CONFIG
+      - value: '-XX:MaxRAMPercentage=50 -XX:+UseParallelGC -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xms20m -Djava.security.egd=file:/dev/./urandom -Duser.home=/home/user'
+        name: MAVEN_OPTS
+      - value: '-XX:MaxRAMPercentage=50 -XX:+UseParallelGC -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xms20m -Djava.security.egd=file:/dev/./urandom'
+        name: JAVA_OPTS
+      - value: '-XX:MaxRAMPercentage=50 -XX:+UseParallelGC -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xms20m -Djava.security.egd=file:/dev/./urandom'
+        name: JAVA_TOOL_OPTIONS
+  - id: redhat/vscode-xml/latest
+    type: chePlugin
+  - id: redhat/vscode-yaml/latest
+    type: chePlugin
+  - id: redhat/java11/latest
+    type: chePlugin
+commands:
+  - name: maven build
+    actions:
+      - workdir: '${CHE_PROJECTS_ROOT}/ArchCNL'
+        type: exec
+        command: mvn clean install
+        component: maven
+  - name: maven build and run
+    actions:
+      - workdir: '${CHE_PROJECTS_ROOT}/console-java-simple'
+        type: exec
+        command: mvn clean install && java -jar ./target/*.jar
+        component: maven
