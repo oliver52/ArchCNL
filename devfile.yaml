@@ -7,6 +7,12 @@ projects:
       location: 'https://github.com/oliver52/ArchCNL.git'
       type: git
       branch: feature/container-dev
+projects:
+  - name: OnionArchitectureDemo
+    source:
+      location: 'https://github.com/Mari-Wie/OnionArchitectureDemo.git'
+      type: git
+      branch: master
 components:
   - id: redhat/java/latest
     preferences:
