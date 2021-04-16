@@ -47,9 +47,4 @@ commands:
         type: exec
         command: mvn clean install
         component: maven
-  - name: maven build and run
-    actions:
-      - workdir: '${CHE_PROJECTS_ROOT}/console-java-simple'
-        type: exec
-        command: mvn clean install && java -jar ./target/*.jar
-        component: maven
+ 
